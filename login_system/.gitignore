@@ -1,0 +1,9 @@
+.venv
+*.tmp
+*.sqlite3
+__pycache__
+node_modules
+static/scripts/output.js
+static/styles/output.css
+.env
+local_settings.py
