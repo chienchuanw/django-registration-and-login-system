@@ -1,29 +1,43 @@
 {% extends "shared/base.html" %}
+{% load static %}
 
 {% block title %}Login{% endblock title %}
 
 {% block content %}
-<div class="wrapper bg-gray-200 m-auto min-h-lvh">
-  <div class="inner bg-white m-auto flex max-w-3xl p-5">
+<div class="wrapper bg-black m-auto min-h-lvh flex items-center">
+  <div class="inner bg-white mx-auto max-w-3xl p-5 flex" >
     <!-- Left: Pictures -->
-    <div class="">
-      <img src="https://fakeimg.pl/405x530/">
+    <div class="w-1/2 self-center">
+      <img class="w-full" src="{% static 'images/entrance.jpeg' %}" alt="entrance">
     </div>
     <!-- Right: Form -->
-    <div class="">
-      <h1 class="font-semibold text-2xl">LOGIN / REGISTRATION</h1>
-      <form action="#" method="post">
+		<form action="#" method="post" class="mx-auto w-1/2 px-12 pt-9">
+      <h1 class="font-semibold text-2xl uppercase text-center">Registration</h1>
         {% csrf_token %}
-        <input type="text" placeholder="First Name">
-        <input type="text" placeholder="Last Name">
-        <input type="text" placeholder="Username">
-        <input type="text" placeholder="Email Address">
-        <input type="text" placeholder="Gender">
-        <input type="text" placeholder="Password">
-        <input type="text" placeholder="Confirm Password">
-        <button class="bg-black text-white w-40 h-12">Register</button>
-      </form>
-    </div>
+			<div class="input-wrapper w-full border border-t-0 border-l-0 border-r-0 border-black mt-4 p-2">
+				<input class=" placeholder-black text-sm" type="text" placeholder="First Name">
+			</div>
+			<div class="input-wrapper w-full border border-t-0 border-l-0 border-r-0 border-black mt-4 p-2">
+				<input class="placeholder-black text-sm" type="text" placeholder="Last Name">
+			</div>
+			<div class="input-wrapper w-full border border-t-0 border-l-0 border-r-0 border-black mt-4 p-2">
+				<input type="text" class="placeholder-black text-sm" placeholder="Username">
+			</div>
+			<div class="input-wrapper w-full border border-t-0 border-l-0 border-r-0 border-black mt-4 p-2">
+				<input type="text" class="placeholder-black text-sm" placeholder="Email Address">
+			</div>
+			<div class="input-wrapper w-full border border-t-0 border-l-0 border-r-0 border-black mt-4 p-2">
+				<input type="text" class="placeholder-black text-sm" placeholder="Gender">
+			</div>
+			<div class="input-wrapper w-full border border-t-0 border-l-0 border-r-0 border-black mt-4 p-2">
+				<input type="text" class="placeholder-black text-sm" placeholder="Password">
+			</div>
+			<div class="input-wrapper w-full border border-t-0 border-l-0 border-r-0 border-black mt-4 p-2">
+				<input type="text" class="placeholder-black text-sm" placeholder="Confirm Password">
+			</div>
+			<button class="bg-black text-white w-40 h-12 block m-auto mt-9 text-base">Register</button>
+		
+    </form>
 
   </div>
 
