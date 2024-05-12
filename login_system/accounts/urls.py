@@ -5,6 +5,7 @@ from .views import AccountCreateView, LoginView
 app_name = "accounts"
 
 urlpatterns = [
-    path("", LoginView.as_view(), name="login"),
-    path("create", AccountCreateView.as_view(), name="create"),
+    path("", views.home, name="home"),
+    path("login/", LoginView.as_view(), name="login"),
+    path("create/", AccountCreateView.as_view(), name="create"),
 ]

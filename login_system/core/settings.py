@@ -1,4 +1,9 @@
 from pathlib import Path
+import environ
+
+# Import environment variable
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -8,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-r+8de%iq_cnen()d$9cc3@fj^)mewv-_9!e6=hxqf#$=n4*udf"
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -25,15 +30,20 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # User-created Django apps
     "accounts",
     # The following apps are required by allauth
-    "django.contrib.auth",
-    "django.contrib.messages",
+    "django.contrib.sites",
     "allauth",
     "allauth.account",
-    # The following apps are required by allauth[socialaccount]
-    "django.contrib.auth",
+    "allauth.socialaccount",
+    # Google Provider
+    "allauth.socialaccount.providers.google",
 ]
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = "/"  # 登入後的首頁網址
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -53,7 +63,14 @@ SOCIALACCOUNT_PROVIDERS = {
         # For each OAuth based provider, either add a ``SocialApp``
         # (``socialaccount`` app) containing the required client
         # credentials, or list them here:
-        "APP": {"client_id": "123", "secret": "456", "key": ""}
+        "APP": {"client_id": env("CLIENT_ID"), "secret": env("SECRET"), "key": ""},
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
     }
 }
 
@@ -84,6 +101,9 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by email
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
+
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
